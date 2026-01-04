@@ -7,8 +7,8 @@ import org.rowlandhall.meepmeep.roadrunner.DefaultBotBuilder;
 import org.rowlandhall.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class MeepMeepTesting {
@@ -29,14 +29,15 @@ public class MeepMeepTesting {
                         .turn(Math.toRadians(90))
                         .build());
 
-        Image img = null;
+        Image background = null;
         try {
-            // Updated with double backslashes
-            img = ImageIO.read(new File("C:\\Users\\KOBI7\\Downloads\\decode-custom-field-images-meepmeep-compatible-printer-v0-xsjhmvxpoonf1.png"));
+            background = ImageIO.read(
+                    MeepMeep.class.getResourceAsStream("/background/season-2025-decode/field-2025-juice-dark.png")
+            );
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        meepMeep.setBackground(img)
+        meepMeep.setBackground(background)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(myBot)
